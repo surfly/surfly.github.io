@@ -33,6 +33,8 @@ olark.identify('6842-684-10-6076');/*]]>*/</script><noscript><a href="https://ww
     widget_key: '5b724ab241454750b1e090eae58d0fac',
     splash: false,
     hide_until_agent_joins: false,
+    hidden: true,
+    autohide_button: false,
     docked_only: true
   }, function(init) {
     if (init.success) {
@@ -40,7 +42,7 @@ olark.identify('6842-684-10-6076');/*]]>*/</script><noscript><a href="https://ww
       if(Surfly.currentSession){
         // TODO: Although this is calling Olark, it is not having the intended effect. Would you be able to take a look?
         console.log("Currently in a session ... we can hide Olark if needed")
-        //olark('api.box.hide');
+        olark('api.box.hide');
       }
     }
   });
