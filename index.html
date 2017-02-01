@@ -14,12 +14,13 @@ olark.identify('6842-684-10-6076');/*]]>*/</script><noscript><a href="https://ww
   // See https://www.olark.com/api#api.chat.onCommandFromOperator
   olark('api.chat.onCommandFromOperator', function(event) {
         if (event.command.name == 'surfly') {
-              var session = Surfly.session().startLeader();
+           Surfly.session().on('session_started', function (session) {
               olark('api.chat.sendNotificationToOperator',
               {
                   // Send a custom notification
                   body: 'Surfly session started: ' + session.followerLink
               });
+          }).startLeader();
           }
   });
 </script>
