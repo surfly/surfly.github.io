@@ -44,6 +44,11 @@ olark.identify('6842-684-10-6076');/*]]>*/</script><noscript><a href="https://ww
         olark.configure('features.attention_grabber', false );
         olark.configure('box.start_hidden', true);
         olark('api.box.hide');
+        olark('api.chat.sendNotificationToOperator',
+        {
+            // Send a custom notification
+            body: 'Surfly session started: ' + Surfly.currentSession.followerLink
+        }
       }
     }
   });
