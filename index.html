@@ -49,7 +49,7 @@ olark.identify('6842-684-10-6076');/*]]>*/</script><noscript><a href="https://ww
         // TODO: Although this is calling Olark, it is not having the intended effect. Would you be able to take a look?
         olark.configure('features.attention_grabber', false );
         olark.configure('box.start_hidden', true);
-        olark('api.chat.onReady' function {
+        olark('api.chat.onReady' function () {
           olark('api.box.hide');
           document.getElementById('olark-container').style = "display: none !important";
           document.getElementById('olark-box-container').style = "display: none !important";
