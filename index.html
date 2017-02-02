@@ -51,7 +51,27 @@ olark.identify('6842-684-10-6076');/*]]>*/</script><noscript><a href="https://ww
         // Within a Surfly session we don't want to see the Olark widget
         // as the outer iFrame already has it, unfortunately
         // the above configure flag does not stick so we'll do this bruteforce:
-        window.olark = undefined;
+        olark('api.box.hide');
+        olark('api.box.onExpand', function() {
+          console.log("Chat box expanded...");
+          olark('api.box.hide');
+        });
+        olark('api.box.onShow', function() {
+          console.log("Chat box shown...");
+          olark('api.box.hide');
+        });
+        olark('api.chat.onReady', function() {
+          console.log("Chat box ready...");
+          olark('api.box.hide');
+        });
+        olark('api.chat.onBeginConversation', function() {
+          console.log("Conversation started...");
+          olark('api.box.hide');
+        });
+        olark('api.chat.onMessageToVisitor', function() {
+          console.log("Message Send...");
+          olark('api.box.hide');
+        });
       };
     }
   });
