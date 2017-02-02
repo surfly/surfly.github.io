@@ -12,15 +12,22 @@ olark.identify('6842-684-10-6076');/*]]>*/</script><noscript><a href="https://ww
 <script type="text/javascript">
   // This makes it so that an olark operator would trigger the surfly session using the "!surfly" command.
   // See https://www.olark.com/api#api.chat.onCommandFromOperator
+  var userdata;
+  olark('api.visitor.getDetails', function(details){
+        // Check for an email address
+        userdata['name'] = details.fullName;
+        userdata['email'] = details.emailAddress;
+  });
   olark('api.chat.onCommandFromOperator', function(event) {
         if (event.command.name == 'surfly') {
+           var metadata = {}
            Surfly.session().on('session_started', function (session) {
               olark('api.chat.sendNotificationToOperator',
               {
                   // Send a custom notification
                   body: 'Surfly session started: ' + session.followerLink
               });
-          }).startLeader();
+          }).startLeader(null, userdata);
           }
   });
 </script>
@@ -53,23 +60,18 @@ olark.identify('6842-684-10-6076');/*]]>*/</script><noscript><a href="https://ww
         // the above configure flag does not stick so we'll do this bruteforce:
         olark('api.box.hide');
         olark('api.box.onExpand', function() {
-          console.log("Chat box expanded...");
           window.setTimeout(function() { olark('api.box.hide'); }, 0);
         });
         olark('api.box.onShow', function() {
-          console.log("Chat box shown...");
           window.setTimeout(function() { olark('api.box.hide'); }, 0);
         });
         olark('api.chat.onReady', function() {
-          console.log("Chat box ready...");
           window.setTimeout(function() { olark('api.box.hide'); }, 0);
         });
         olark('api.chat.onBeginConversation', function() {
-          console.log("Conversation started...");
           window.setTimeout(function() { olark('api.box.hide'); }, 0);
         });
         olark('api.chat.onMessageToVisitor', function() {
-          console.log("Message Send...");
           window.setTimeout(function() { olark('api.box.hide'); }, 0);
         });
       };
