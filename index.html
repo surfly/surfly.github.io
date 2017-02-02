@@ -48,10 +48,13 @@ olark.identify('6842-684-10-6076');/*]]>*/</script><noscript><a href="https://ww
       if(Surfly.currentSession){
         olark.configure('features.attention_grabber', false );
         olark.configure('box.start_hidden', true);
-        // Within a Surfly session we don't need  Olark
-        // the above configure flag does not stick so we'll do this:
-        var olark_elem = document.getElementById('olark-wrapper');
-        olark_elem.parentNode.removeChild(olark_elem);
+        // Within a Surfly session we don't want to see the Olark widget
+        // as the outer iFrame already has it, unfortunately
+        // the above configure flag does not stick so we'll do this bruteforce:
+        olark('api.chat.onReady', function () {
+          var olark_elem = document.getElementById('olark-wrapper');
+          olark_elem.parentNode.removeChild(olark_elem);
+        });
       };
     }
   });
