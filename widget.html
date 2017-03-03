@@ -24,13 +24,8 @@ Surfly.init(settings, function(initResult)
     {
         if (initResult.success)
         {
-            __surfly_session = Surfly.session({
-                splash: false,
-                start_docked: true
-            }, __session.url_leader).startLeader('iframe');
-
+            Surfly.session().startLeader();
         } else {
-
             $('body').html('Your browser lacks features required by CB-Surfly');
         }
 });
