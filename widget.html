@@ -1,0 +1,38 @@
+<html>
+  <body>
+    Hi there
+
+<script>
+(function(s,u,r,f,l,y){s[f]=s[f]||{init:function(){s[f].q=arguments}};
+l=u.createElement(r);y=u.getElementsByTagName(r)[0];l.async=1;
+l.src='https://surfly.com/surfly.js';y.parentNode.insertBefore(l,y);})
+(window,document,'script','Surfly');
+
+var settings = {
+    widgetkey: 'e0e076d8b3ac4a25930679c0ba6ee629',
+    only_embedded_sessions: true,
+    docked_only: true,
+    sharing_button: false,
+    newurl: false,
+    ui_off: true,
+    white_label: true,
+    hidden: true,
+    splash: false
+};
+
+Surfly.init(settings, function(initResult)
+    {
+        if (initResult.success)
+        {
+            __surfly_session = Surfly.session({
+                splash: false,
+                start_docked: true
+            }, __session.url_leader).startLeader('iframe');
+
+        } else {
+
+            $('body').html('Your browser lacks features required by CB-Surfly');
+        }
+});
+
+</script>
